@@ -8,67 +8,81 @@
 
 import Foundation
 
-public struct MoviesResponse: Codable {
-    public let page: Int
-    public let totalResults: Int
-    public let totalPages: Int
-    public let results: [Movie]
+ struct MoviesResponse: Codable {
+     let page: Int
+     let totalResults: Int
+     let totalPages: Int
+     let results: [Movie]
+    
+    enum CodingKeys: String, CodingKey {
+        case results, page
+        case totalResults = "total_results"
+        case totalPages = "total_pages"
+    }
 }
 
-public struct Movie: Codable, Identifiable {
-    
-    public let id: Int
-    public let title: String
-    public let backdropPath: String?
-    public let posterPath: String?
-    public let overview: String
-    public let releaseDate: Date
-    public let voteAverage: Double
-    public let voteCount: Int
-    public let tagline: String?
-    public let genres: [MovieGenre]?
-    public let videos: MovieVideoResponse?
-    public let credits: MovieCreditResponse?
-    public let adult: Bool
-    public let runtime: Int?
-    public var posterURL: URL {
+ struct Movie: Codable, Identifiable {
+     let id: Int
+     let title: String
+     let backdropPath: String?
+     let posterPath: String?
+     let overview: String
+     let releaseDate: String?
+     let voteAverage: Double
+     let voteCount: Int
+     let tagline: String?
+     let genres: [MovieGenre]?
+     let videos: MovieVideoResponse?
+     let credits: MovieCreditResponse?
+     let adult: Bool
+     let runtime: Int?
+     var posterURL: URL {
         return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
     }
     
-    public var backdropURL: URL {
+     var backdropURL: URL {
         return URL(string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")!
     }
     
-    public var voteAveragePercentText: String {
+     var voteAveragePercentText: String {
         return "\(Int(voteAverage * 10))%"
     }
     
-    public var ratingText: String {
+     var ratingText: String {
         let rating = Int(voteAverage)
         let ratingText = (0..<rating).reduce("") { (acc, _) -> String in
             return acc + "⭐️"
         }
         return ratingText
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case id, adult, tagline, genres, videos, credits, runtime, title, overview
+        case voteCount = "vote_count"
+        case posterPath = "poster_path"
+        case backdropPath = "backdrop_path"
+        case voteAverage = "vote_average"
+        case releaseDate = "release_date"
+    }
 }
 
-public struct MovieGenre: Codable {
+ struct MovieGenre: Codable {
     let name: String
 }
 
-public struct MovieVideoResponse: Codable {
-    public let results: [MovieVideo]
+ struct MovieVideoResponse: Codable {
+     let results: [MovieVideo]
 }
 
-public struct MovieVideo: Codable {
-    public let id: String
-    public let key: String
-    public let name: String
-    public let site: String
-    public let size: Int
-    public let type: String
+ struct MovieVideo: Codable {
+     let id: String
+     let key: String
+     let name: String
+     let site: String
+     let size: Int
+     let type: String
     
-    public var youtubeURL: URL? {
+     var youtubeURL: URL? {
         guard site == "YouTube" else {
             return nil
         }
@@ -76,20 +90,20 @@ public struct MovieVideo: Codable {
     }
 }
 
-public struct MovieCreditResponse: Codable {
-    public let cast: [MovieCast]
-    public let crew: [MovieCrew]
+ struct MovieCreditResponse: Codable {
+     let cast: [MovieCast]
+     let crew: [MovieCrew]
 }
 
-public struct MovieCast: Codable {
-    public let character: String
-    public let name: String
+ struct MovieCast: Codable {
+     let character: String
+     let name: String
 }
 
-public struct MovieCrew: Codable {
-    public let id: Int
-    public let department: String
-    public let job: String
-    public let name: String
+ struct MovieCrew: Codable {
+     let id: Int
+     let department: String
+     let job: String
+     let name: String
 }
 

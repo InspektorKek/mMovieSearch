@@ -15,6 +15,7 @@ protocol MoviesNetworkRepository: NetworkManager {
 }
 
 struct MoviesNetworkManager: MoviesNetworkRepository {
+    let bgQueue = DispatchQueue(label: "bg_parse_queue")
     let session: URLSession
     
     init(session: URLSession) {
@@ -28,16 +29,16 @@ struct MoviesNetworkManager: MoviesNetworkRepository {
 
 extension MoviesNetworkManager {
     enum APICall {
-        case nowPlaying(page: Int)
-        case upcoming(page: Int)
-        case popular(page: Int)
-        case topRated(page: Int)
+        case nowPlaying(page: Int? = nil)
+        case upcoming(page: Int? = nil)
+        case popular(page: Int? = nil)
+        case topRated(page: Int? = nil)
     }
 }
 
 extension MoviesNetworkManager.APICall: EndPointType {
     var baseURL: URL {
-        guard let baseURL = URL(string: "https://api.themoviedb.org/3") else { fatalError("Incorrect URL") }
+        guard let baseURL = URL(string: "https://api.themoviedb.org/3/movie") else { fatalError("Incorrect URL") }
         return baseURL
     }
     
@@ -61,21 +62,33 @@ extension MoviesNetworkManager.APICall: EndPointType {
     var task: HTTPTask {
         switch self {
         case .nowPlaying(let page):
+            var parameters: [String: Any] = ["api_key": APIKeys.movies.rawValue]
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
-                                      urlParameters: ["page": page,
-                                                      "api_key": APIKeys.movies])
+                                      urlParameters: parameters)
         case .upcoming(let page):
+            var parameters: [String: Any] = ["api_key": APIKeys.movies.rawValue]
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
-                                      urlParameters: ["page": page,
-                                                      "api_key": APIKeys.movies])
+                                      urlParameters: parameters)
         case .popular(let page):
+            var parameters: [String: Any] = ["api_key": APIKeys.movies.rawValue]
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
-                                      urlParameters: ["page": page,
-                                                      "api_key": APIKeys.movies])
+                                      urlParameters: parameters)
         case .topRated(let page):
+            var parameters: [String: Any] = ["api_key": APIKeys.movies.rawValue]
+            if let page = page {
+                parameters["page"] = page
+            }
             return .requestParameters(bodyParameters: nil,
-                                      urlParameters: ["page": page,
-                                                      "api_key": APIKeys.movies])
+                                      urlParameters: parameters)
         }
     }
     
