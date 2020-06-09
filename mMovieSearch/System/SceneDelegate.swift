@@ -12,7 +12,8 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    private let locator = ServiceLocator()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,8 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let reposytory: MoviesNetworkRepository = MoviesNetworkManager(session: Self.configuredURLSession())
-        let moviesService = MoviesCategoryService(networkManager: reposytory)
+        
+        locator.registerService(service: MoviesNetworkManager(session: Self.configuredURLSession()) as MoviesNetworkRepository)
+        
+        let moviesService = MoviesCategoryService(networkManager: locator.getService())
         let contentView = ContentView(viewModel: MoviesListViewModel(servise: moviesService))
 
         // Use a UIHostingController as window root view controller.

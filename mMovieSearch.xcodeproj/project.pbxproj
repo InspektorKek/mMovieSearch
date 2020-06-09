@@ -20,6 +20,7 @@
 		8BCBE05E24542BC100EF056F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BCBE05D24542BC100EF056F /* Preview Assets.xcassets */; };
 		8BCBE06124542BC100EF056F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BCBE05F24542BC100EF056F /* LaunchScreen.storyboard */; };
 		8BCBE06A24542C1900EF056F /* NetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 8BCBE06924542C1900EF056F /* NetworkLayer */; };
+		8BD2DC03248FDE2B0064952C /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2DC02248FDE2B0064952C /* ServiceLocator.swift */; };
 		8BF52BE624696EDC00654CC6 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF52BE524696EDC00654CC6 /* MoviesListViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		8BCBE05D24542BC100EF056F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8BCBE06024542BC100EF056F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BCBE06224542BC100EF056F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BD2DC02248FDE2B0064952C /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		8BF52BE524696EDC00654CC6 /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +85,7 @@
 				8BA002C92460225A00CBAB96 /* CancelBag.swift */,
 				8B04F5152455D77900697511 /* APIKeys.swift */,
 				8BA002CB2460234000CBAB96 /* NetworkingHelpers.swift */,
+				8BD2DC02248FDE2B0064952C /* ServiceLocator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				8BCBE05524542BC100EF056F /* AppDelegate.swift in Sources */,
 				8BCBE05724542BC100EF056F /* SceneDelegate.swift in Sources */,
 				8BA002CA2460225A00CBAB96 /* CancelBag.swift in Sources */,
+				8BD2DC03248FDE2B0064952C /* ServiceLocator.swift in Sources */,
 				8B04F5162455D77900697511 /* APIKeys.swift in Sources */,
 				8B04F5102455D25800697511 /* Movie.swift in Sources */,
 				8BF52BE624696EDC00654CC6 /* MoviesListViewModel.swift in Sources */,
