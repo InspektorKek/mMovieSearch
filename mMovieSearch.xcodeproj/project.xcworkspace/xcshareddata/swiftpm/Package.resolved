@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "NetworkLayer",
+        "repositoryURL": "git@github.com:InspektorKek/NetworkLayer.git",
+        "state": {
+          "branch": null,
+          "revision": "a6f3dd5c1b21356b11f12b1fa1780cea5c74c244",
+          "version": "1.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

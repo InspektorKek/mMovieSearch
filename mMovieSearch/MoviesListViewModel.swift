@@ -14,7 +14,7 @@ class MoviesListViewModel: ObservableObject {
     init(servise: MoviesCategoryService) {
         self.servise = servise
         servise.loadMovies(category: .nowPlaying()) { result in
-            
+            print(result)
         }
     }
 }
